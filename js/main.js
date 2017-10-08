@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var notesDb = [];
 
 	if(localStorage.notes) {
-		var notesDb = localStorage.notes.split(',');
+		notesDb = localStorage.notes.split(',');
 		var len = notesDb.length;
 		for(i=0; i<len; i++) {
 			$("#notelist").append("<li>"+notesDb[i]+"</li>");
