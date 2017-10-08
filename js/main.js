@@ -1,25 +1,15 @@
 $(document).ready(function(){
 	$("#notes").text("");
-	var db = openDatabase('notesdb', '1.0', 'Notes DB', 2 * 1024 * 1024);
-	var msg;
-	var ind = 0;
-	var progressWidth = 0;
+	var ind = 0, progressWidth = 0;
 	var notesDb = [];
 
-	db.transaction(function (tx) {
-		tx.executeSql('CREATE TABLE IF NOT EXISTS NOTES (id unique autoincrement, note)');
-	});
-
-	db.transaction(function (tx) {
-		tx.executeSql('SELECT * FROM NOTES', [], function (tx, results) {
-		var len = results.rows.length, i;
-		for (i = 0; i < len; i++){
-			msg = "<li>" + results.rows.item(i).note + "</li>";
-			$("#notelist").append(msg);
+	if(localStorage.notes) {
+		var notesDb = localStorage.notes.split(',');
+		var len = notesDb.length;
+		for(i=0; i<len; i++) {
+			$("#notelist").append("<li>"+notesDb[i]+"</li>");
 		}
-		}, null);
-	});
-
+	}
 
 	$("#enter").click(function(){
 		var note = $("#notes").val();
@@ -53,24 +43,20 @@ $(document).ready(function(){
 
 	$("#delete").click(function(){
 			if($("li").eq(ind).hasClass("selected")) {
-				db.transaction(function (tx) {
-					tx.executeSql('DELETE FROM NOTES WHERE note='+$("li").eq(ind).text()+'');
-				});
 				notesDb.pop($("li").eq(ind).text());
 				$("li").eq(ind).remove();
+				localStorage.notes = notesDb;
 			}
 	});
 
 	$("#save").click(function(){
 		weight = notesDb.length;
 		for(i=0; i<weight; i++) {
-			db.transaction(function(tx) {
-				tx.executeSql('INSERT INTO NOTES (note) VALUES ('+notesDb[i]+')');
-				progressWidth += (100/weight);
-				prog = progressWidth.toString()+"%";
-				$("#pro-bar").css("width",prog);
-				$("#pro-txt").text(prog+" Complete");
-			});
+			progressWidth += (100/weight);
+			prog = progressWidth.toString()+"%";
+			$("#pro-bar").css("width",prog);
+			$("#pro-txt").text(prog+" Complete");
 		}
+		localStorage.notes = notesDb;
 	});
 });
