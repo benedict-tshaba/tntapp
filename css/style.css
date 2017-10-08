@@ -1,0 +1,39 @@
+  h2 {
+    font-family: Font-Awesome, Monospace;
+  }
+
+  .scroll{
+    display:block;
+    border: 2px solid grey;
+    padding:5px;
+    margin-top:5px;
+    width:300px;
+    height:190px;
+    overflow:scroll;
+  }
+  
+  .text {
+	 display: block;
+	 border: 2px solid grey;
+     padding:5px;
+     margin-top:5px;
+	 width: 300px;
+	 height : 190px;
+  }
+
+  img {
+	height: 70px;
+	width: 90px;
+
+  }
+
+  .thick-green-border {
+    border-color: blue;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 30%;
+  }
+
+.selected {
+	color: red;
+}
