@@ -43,7 +43,8 @@ $(document).ready(function(){
 
 	$("#delete").click(function(){
 			if($("li").eq(ind).hasClass("selected")) {
-				notesDb.pop($("li").eq(ind).text());
+				//notesDb.pop($("li").eq(ind).text());
+				remove(notesDb, $("li").eq(ind).text());
 				$("li").eq(ind).remove();
 				localStorage.notes = notesDb;
 			}
@@ -60,3 +61,11 @@ $(document).ready(function(){
 		localStorage.notes = notesDb;
 	});
 });
+
+function remove(array, item) {
+	var index = array.indexOf(item);
+	if(index > -1) {
+		array.splice(index, 1);
+	}
+
+}
