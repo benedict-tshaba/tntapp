@@ -19,9 +19,9 @@ $(document).ready(function(){
 	});
 
 	$("#notes").bind("keypress",function(evt){
-		//evt.preventDefault(); kills the other buttons
 		var note = $("#notes").val();
 		if(evt.keyCode === 13) {
+			evt.preventDefault(); //kills the other buttons
 			notesDb.push(note);
 			$("#notelist").append("<li>"+note+"</li>");
 			$(this).val("");
