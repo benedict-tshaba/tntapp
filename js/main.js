@@ -29,6 +29,11 @@ $(document).ready(function(){
 		//evt.stopImmediatePropagation(); expensive for no reason at all
 	});
 
+
+	$("ol").find("li").bind("dblclick",function(){
+		$("#notes").text($(this).text());
+	});
+
 	$("ol").click(function(){
 		$(this).find("li").click(function(){
 			$(this).addClass("selected");
