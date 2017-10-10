@@ -1,8 +1,9 @@
 $(document).ready(function(){
-	$("#notes").text("");
+	$("#notes").text(""); //clear the notebox. On startup the <tab> character 								gets written, and I still cant find out why. 
 	var ind = 0, progressWidth = 0;
 	var notesDb = [];
 
+	// Check if we have notes in the database and fill them in the notelist
 	if(localStorage.notes) {
 		notesDb = localStorage.notes.split(',');
 		var len = notesDb.length;
@@ -29,7 +30,7 @@ $(document).ready(function(){
 		//evt.stopImmediatePropagation(); expensive for no reason at all
 	});
 
-
+	// Copies a note on double click to the note box
 	$("ol").find("li").bind("dblclick",function(){
 		$("#notes").text($(this).text());
 	});
@@ -46,6 +47,7 @@ $(document).ready(function(){
 		});
 	});
 
+	// Deletes a note from the database and removes it from the notelist
 	$("#delete").click(function(){
 			if($("li").eq(ind).hasClass("selected")) {
 				//notesDb.pop($("li").eq(ind).text());
@@ -55,6 +57,7 @@ $(document).ready(function(){
 			}
 	});
 
+	// Saves a note to the database
 	$("#save").click(function(){
 		weight = notesDb.length;
 		for(i=0; i<weight; i++) {
@@ -67,6 +70,8 @@ $(document).ready(function(){
 	});
 });
 
+// Apparently javascript has no array.remove function which is stupid I think
+// Anyway this function is an implementation of that.
 function remove(array, item) {
 	var index = array.indexOf(item);
 	if(index > -1) {
