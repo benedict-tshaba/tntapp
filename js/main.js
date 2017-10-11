@@ -64,6 +64,7 @@ $(document).ready(function(){
 			remove(notesDb, currentNote); //remove it from database
 			notesDb.unshift(currentNote); //prepend selected note
 			localStorage.notes = notesDb; //update local storage
+			repopulateNoteList(notesDb);
 		}
 	});
 
@@ -88,4 +89,11 @@ function remove(array, item) {
 		array.splice(index, 1);
 	}
 
+}
+
+function repopulateNoteList(dataArr) {
+	$("#notelist").text(""); //clear the note list
+	for(i=0;i<dataArr.length;i++) {
+		$("#notelist").append("<li>"+dataArr[i]+"</li>");
+	}
 }
