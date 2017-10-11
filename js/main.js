@@ -57,6 +57,16 @@ $(document).ready(function(){
 			}
 	});
 
+	// Moves selected note to the top of the note list
+	$("#prioritise").click(function(){
+		if($("li").eq(ind).hasClass("selected")) {
+			var currentNote = $("li").eq(ind).text();
+			remove(notesDb, currentNote); //remove it from database
+			notesDb.unshift(currentNote); //prepend selected note
+			localStorage.notes = notesDb; //update local storage
+		}
+	});
+
 	// Saves a note to the database
 	$("#save").click(function(){
 		weight = notesDb.length;
