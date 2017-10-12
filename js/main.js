@@ -11,6 +11,20 @@ $(document).ready(function(){
 			$("#notelist").append("<li>"+notesDb[i]+"</li>");
 		}
 	}
+	
+	//enable confirmation dialog
+	// Deletes a note from the database and removes it from the notelist after success confirmation
+	$('[data-toggle=confirmation]').confirmation({
+	  rootSelector: '[data-toggle=confirmation]',
+	  onConfirm: function() {
+			if($("li").eq(ind).hasClass("selected")) {
+				//notesDb.pop($("li").eq(ind).text());
+				remove(notesDb, $("li").eq(ind).text());
+				$("li").eq(ind).remove();
+				localStorage.notes = notesDb;
+			}
+	},
+	});
 
 	$("#enter").click(function(){
 		var note = $("#notes").val();
@@ -47,6 +61,7 @@ $(document).ready(function(){
 		});
 	});
 
+/*
 	// Deletes a note from the database and removes it from the notelist
 	$("#delete").click(function(){
 			if($("li").eq(ind).hasClass("selected")) {
@@ -56,6 +71,7 @@ $(document).ready(function(){
 				localStorage.notes = notesDb;
 			}
 	});
+*/
 
 	// Moves selected note to the top of the note list
 	$("#prioritise").click(function(){
