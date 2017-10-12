@@ -57,11 +57,15 @@
       <button class="btn btn-block btn-warning" id="prioritise"><i class="icon icon-arrow-up"></i> Prioritize</button>
     </div>
     <div class="col-xs-3">
-	    <button class=" btn btn-block btn-danger" id="delete"><i class="icon icon-trash"></i> Delete</button>
+		<button class="btn btn-block btn-danger" id="delete" data-toggle="confirmation" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+        data-btn-ok-class="btn-success" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger"
+        data-title="Are you sure you want to delete this note?"><i class="icon icon-trash"></i>
+  Delete</button>
     </div>
   </div>
   </div>
 </div>
+
 
 <div class="progress progress-striped active">
 	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" id="pro-bar">
@@ -77,5 +81,6 @@
 <!--Late loading is speed ;) Javascript-->
 <script src="js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap-confirmation.min.js"></script>
 <script src="js/main.js"></script>
 </html>
