@@ -5,6 +5,7 @@
 #### Features
 * Notes are stored locally on your computer.
 * You can delete a note.
+* When you double click on a note in the note list it gets copied to the note box
 * You will never lose your data unless you lose your device or clear browser.
 * You can click on a note and 'prioritise' it. i.e put it at the top of your note list
 
